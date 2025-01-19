@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Tebak-Tebakan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game Tebak-Tebakan</h1>
+  <p>Coba tebak angka antara 1 hingga 3!</p>
+  <form id="guessForm">
+    <input type="number" id="guess" min="1" max="3" required>
+    <button type="submit">Tebak</button>
+  </form>
+  <div class="result" id="result"></div>
+
+  <script>
+    // Angka acak antara 1-3
+    const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+    // Form handler
+    document.getElementById("guessForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const userGuess = parseInt(document.getElementById("guess").value);
+      const resultDiv = document.getElementById("result");
+
+      if (userGuess === randomNumber) {
+        resultDiv.textContent = "Selamat! Tebakanmu benar!";
+        resultDiv.style.color = "green";
+      } else {
+        resultDiv.textContent = `Salah! Angka yang benar adalah ${randomNumber}.`;
+        resultDiv.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
